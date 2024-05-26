@@ -5,6 +5,11 @@ namespace EntityFrameworkProj.Context;
 
 public class ApplicationDbContext : DbContext
 {
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
+    {
+    }
+
     public DbSet<Trip> Trips { get; set; }
     public DbSet<Client> Clients { get; set; }
     public DbSet<ClientTrip> ClientTrips { get; set; }

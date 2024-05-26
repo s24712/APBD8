@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace EntityFrameworkProj.Models;
 
 public class ClientTrip
 {
+    [Key]
     public int IdClient { get; set; }
     public Client Client { get; set; }
     public int IdTrip { get; set; }

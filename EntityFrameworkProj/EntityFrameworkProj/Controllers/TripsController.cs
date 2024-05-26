@@ -1,5 +1,4 @@
 using EntityFrameworkProj.Context;
-using EntityFrameworkProj.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,11 +16,11 @@ public class TripsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Trip>>> GetTrips()
+    public async Task<ActionResult<IEnumerable<TripDto>>> GetTrips()
     {
         var trips = await _context.Trips
             .OrderByDescending(t => t.StartDate)
-            .Select(t => new Trip
+            .Select(t => new TripDto
             {
                 IdTrip = t.IdTrip,
                 Name = t.Name,
@@ -32,4 +31,12 @@ public class TripsController : ControllerBase
 
         return Ok(trips);
     }
+}
+
+public class TripDto
+{
+    public int IdTrip { get; set; }
+    public string Name { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
 }
